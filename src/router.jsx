@@ -1,51 +1,105 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import PublicLayout from "@/layouts/public/PublicLayout";
-import AdminLayout from "@/layouts/admin/AdminLayout";
-import VendedorLayout from "@/layouts/vendedor/VendedorLayout";
-import MainView from "@/views/public/MainView";
+import HomeLayout from "@/layouts/home/HomeLayout";
+import HomeView from "@/views/home/HomeView";
 
-import VistaDashboard from "@/views/admin/dashboard/VistaDashboard";
-import VistaVendedores from "@/views/admin/vendedores/VistaVendedores";
-import VistaClientes from "@/views/admin/clientes/VistaClientes";
-import VistaProductos from "@/views/admin/productos/VistaProductos";
-import VistaCategorias from "@/views/admin/categorias/VistaCategorias";
-import VistaProveedores from "@/views/admin/proveedores/VistaProveedores";
-import VistaMarcas from "@/views/admin/marcas/VistaMarcas";
-import VistaCompras from "./views/admin/compras/VistaCompras";
-import VistaVentas from "./views/admin/ventas/VistaVentas";
+import AppLayout from "@/layouts/app/AppLayout";
+import DashboardView from "@/views/dashboard/DashboardView";
+import VendedoresView from "@/views/vendedores/VendedoresView";
+import ClientesView from "@/views/clientes/ClientesView";
+import ClientesJuridicosView from "@/views/clientesJuridicos/ClientesJuridicosView";
+import ClientesNaturalesView from "@/views/clientesNaturales/ClientesNaturalesView";
+import ProveedoresView from "@/views/proveedores/ProveedoresView";
+import CategoriasView from "@/views/categorias/CategoriasView";
+import MarcasView from "@/views/marcas/MarcasView";
+import ProductosView from "@/views/productos/ProductosView";
+import ComprasView from "@/views/compras/ComprasView";
+import VentasView from "@/views/ventas/VentasView";
+import POSView from "@/views/pos/POSView";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<PublicLayout />}>
-          <Route path="/" element={<MainView />} />
+        <Route element={<HomeLayout />}>
+          <Route path="/" element={<HomeView />} />
         </Route>
 
-        <Route element={<AdminLayout />}>
-          <Route path="/administrador/dashboard" element={<VistaDashboard />} />
+        <Route element={<AppLayout />}>
+          <Route path="/dashboard" element={<DashboardView />} />
           <Route
-            path="/administrador/vendedores"
-            element={<VistaVendedores />}
-          />
-          <Route path="/administrador/clientes" element={<VistaClientes />} />
-          <Route path="/administrador/productos" element={<VistaProductos />} />
-          <Route
-            path="/administrador/categorias"
-            element={<VistaCategorias />}
+            path="/vendedores"
+            element={
+              <ProtectedRoute roles={[1]}>
+                <VendedoresView />
+              </ProtectedRoute>
+            }
           />
           <Route
-            path="/administrador/proveedores"
-            element={<VistaProveedores />}
+            path="/clientes"
+            element={
+              <ProtectedRoute roles={[1]}>
+                <ClientesView />
+              </ProtectedRoute>
+            }
           />
-          <Route path="/administrador/marcas" element={<VistaMarcas />} />
-          <Route path="/administrador/compras" element={<VistaCompras />} />
-          <Route path="/administrador/ventas" element={<VistaVentas />} />
-        </Route>
-
-        <Route element={<VendedorLayout />}>
-          <Route path="/vendedor/ventas" element={<VistaVentas />} />
+          <Route
+            path="/proveedores"
+            element={
+              <ProtectedRoute roles={[1]}>
+                <ProveedoresView />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/categorias"
+            element={
+              <ProtectedRoute roles={[1]}>
+                <CategoriasView />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/marcas"
+            element={
+              <ProtectedRoute roles={[1]}>
+                <MarcasView />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/productos"
+            element={
+              <ProtectedRoute roles={[1]}>
+                <ProductosView />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/compras"
+            element={
+              <ProtectedRoute roles={[1]}>
+                <ComprasView />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ventas"
+            element={
+              <ProtectedRoute roles={[1]}>
+                <VentasView />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/pos"
+            element={
+              <ProtectedRoute roles={[1, 2]}>
+                <POSView />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>
