@@ -31,16 +31,16 @@ export default function CamposFormulario({ formulario }) {
 
       <FormField
         control={formulario.control}
-        name="username"
+        name="correo"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Nombre de usuario</FormLabel>
+            <FormLabel>Correo</FormLabel>
             <FormControl>
               <Input
-                type="text"
-                placeholder="goku123"
+                type="email"
+                placeholder="correo@correo.com"
                 {...field}
-                autoComplete="username"
+                autoComplete="email"
               />
             </FormControl>
             <FormMessage />
@@ -50,7 +50,7 @@ export default function CamposFormulario({ formulario }) {
 
       <FormField
         control={formulario.control}
-        name="password"
+        name="contrasenia"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Contraseña</FormLabel>
@@ -112,25 +112,6 @@ export default function CamposFormulario({ formulario }) {
                 placeholder="915115894"
                 {...field}
                 autoComplete="tel-national"
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={formulario.control}
-        name="correo"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Correo</FormLabel>
-            <FormControl>
-              <Input
-                type="email"
-                placeholder="correo@correo.com"
-                {...field}
-                autoComplete="email"
               />
             </FormControl>
             <FormMessage />

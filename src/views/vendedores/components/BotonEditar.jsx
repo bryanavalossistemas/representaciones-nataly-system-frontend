@@ -16,20 +16,21 @@ export default function BotonEditar({ data }) {
 
   const valoresIniciales = {
     nombre: data.nombre,
-    username: data.username,
-    password: data.password,
+    correo: data.correo,
+    contrasenia: data.contrasenia,
     dni: data.dni,
     telefono: data.telefono || "",
     celular: data.celular || "",
-    correo: data.correo || "",
   };
 
   const formulario = useForm({
     resolver: zodResolver(
       z.object({
         nombre: z.string().min(1, { message: "El nombre es requerido" }),
-        username: z.string().min(1, { message: "El usuario es requerido" }),
-        password: z.string().min(1, { message: "La contraseña es requerida" }),
+        correo: z.string().min(1, { message: "El correo es requerido" }),
+        contrasenia: z
+          .string()
+          .min(1, { message: "La contraseña es requerida" }),
         dni: z.string().regex(/^\d{8}$/, "El dni debe tener 8 dígitos"),
         telefono: z
           .string()
@@ -37,12 +38,6 @@ export default function BotonEditar({ data }) {
         celular: z
           .string()
           .regex(/^(\d{9})?$/, "El celular debe tener 9 dígitos"),
-        correo: z
-          .string()
-          .regex(
-            /^$|^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-            "El correo no es válido"
-          ),
       })
     ),
     values: valoresIniciales,

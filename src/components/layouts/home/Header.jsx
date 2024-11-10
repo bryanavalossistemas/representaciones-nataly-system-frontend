@@ -50,16 +50,16 @@ export default function Header() {
   const setToken = useAutenticacionStore((state) => state.setToken);
 
   const valoresIniciales = {
-    username: "",
-    password: "",
+    correo: "",
+    contrasenia: "",
   };
   const formulario = useForm({
     resolver: zodResolver(
       z.object({
-        username: z.string().min(1, {
+        correo: z.string().min(1, {
           message: "El nombre de usuario es requerido",
         }),
-        password: z.string().min(1, {
+        contrasenia: z.string().min(1, {
           message: "La contraseña es requerida",
         }),
       })
@@ -151,14 +151,14 @@ export default function Header() {
               <div className="space-y-2">
                 <FormField
                   control={formulario.control}
-                  name="username"
+                  name="correo"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Usuario</FormLabel>
                       <FormControl>
                         <Input
                           type="text"
-                          placeholder="Nombre de username"
+                          placeholder="Nombre de correo"
                           {...field}
                           autoComplete="email"
                         />
@@ -170,7 +170,7 @@ export default function Header() {
 
                 <FormField
                   control={formulario.control}
-                  name="password"
+                  name="contrasenia"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Contraseña</FormLabel>

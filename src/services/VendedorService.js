@@ -14,8 +14,8 @@ class VendedorService {
       return {
         ...vendedor,
         nombre: vendedor.usuario.nombre,
-        username: vendedor.usuario.username,
-        password: vendedor.usuario.password,
+        correo: vendedor.usuario.correo,
+        contrasenia: vendedor.usuario.contrasenia,
       };
     });
 

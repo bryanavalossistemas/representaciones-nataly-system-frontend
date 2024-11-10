@@ -13,14 +13,14 @@ const columnas = [
     cell: ({ row }) => row.getValue("nombre"),
   },
   {
-    accessorKey: "username",
-    header: "Usuario",
-    cell: ({ row }) => row.getValue("username"),
+    accessorKey: "correo",
+    header: "Correo",
+    cell: ({ row }) => row.getValue("correo"),
   },
   {
-    accessorKey: "password",
+    accessorKey: "contrasenia",
     header: "Contraseña",
-    cell: ({ row }) => row.getValue("password"),
+    cell: ({ row }) => row.getValue("contrasenia"),
   },
   {
     accessorKey: "dni",
@@ -36,11 +36,6 @@ const columnas = [
     accessorKey: "celular",
     header: "Celular",
     cell: ({ row }) => row.getValue("celular"),
-  },
-  {
-    accessorKey: "correo",
-    header: "Correo",
-    cell: ({ row }) => row.getValue("correo"),
   },
   {
     id: "actions",
