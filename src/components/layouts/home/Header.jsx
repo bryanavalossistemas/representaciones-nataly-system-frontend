@@ -5,7 +5,11 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { iniciarSesion, obtenerUsuario } from "@/apis/UsuarioAPI";
+import {
+  iniciarSesion,
+  iniciarSesionGoogle,
+  obtenerUsuario,
+} from "@/apis/UsuarioAPI";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
@@ -25,6 +29,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { GoogleLogin } from "@react-oauth/google";
 
 const elementos = [
   {
@@ -66,6 +71,30 @@ export default function Header() {
     ),
     defaultValues: valoresIniciales,
   });
+
+  const { mutate: mutateGoogle, isPendingGoogle } = useMutation({
+    mutationFn: iniciarSesionGoogle,
+    onError: (error) => {
+      console.log(error);
+    },
+    onSuccess: ({ token, rolId, nombre }) => {
+      setToken(token);
+      if (rolId === 1) {
+        navigate("/dashboard");
+      } else if (rolId === 2) {
+        navigate("/pos");
+      } else {
+        navigate("/");
+      }
+      toast.success(`Bienvenido ${nombre}`);
+    },
+  });
+
+  const handleLogin = (credentialResponse) => {
+    mutateGoogle({
+      datosFormulario: { googleToken: credentialResponse.credential },
+    });
+  };
 
   const { mutate, isPending } = useMutation({
     mutationFn: iniciarSesion,
@@ -189,7 +218,7 @@ export default function Header() {
               </div>
 
               <Button
-                disabled={isPending}
+                disabled={isPending || isPendingGoogle}
                 type="submit"
                 className="w-full bg-teal-600 hover:bg-teal-700 text-white"
               >
@@ -197,6 +226,10 @@ export default function Header() {
               </Button>
             </form>
           </Form>
+          <GoogleLogin
+            onSuccess={handleLogin}
+            onError={() => console.log("Error en la autenticación")}
+          />
         </DialogContent>
       </Dialog>
     </header>

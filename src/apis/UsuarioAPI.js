@@ -16,3 +16,13 @@ export async function obtenerUsuario() {
 
   return respuesta.data;
 }
+
+export async function iniciarSesionGoogle({ datosFormulario }) {
+  const ruta = "/auth/google";
+  const { data } = await api.post(ruta, datosFormulario);
+  const token = data.token;
+  const decodedToken = jwtDecode(data.token);
+  const rolId = decodedToken.rolId;
+  const nombre = decodedToken.nombre;
+  return { token, rolId, nombre };
+}

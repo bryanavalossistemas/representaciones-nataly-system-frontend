@@ -13,6 +13,12 @@ class ProductoService {
     return respuesta.data;
   }
 
+  async getAllMasVendidos() {
+    const { data: respuesta } = await api.get("/productos/masVendidos");
+
+    return respuesta.data;
+  }
+
   async update({ id, payload }) {
     const { data } = await api.put(`/productos/${id}`, payload);
 
