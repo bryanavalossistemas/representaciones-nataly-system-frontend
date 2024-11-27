@@ -11,6 +11,7 @@ import ClientesJuridicosView from "@/views/clientesJuridicos/ClientesJuridicosVi
 import ClientesNaturalesView from "@/views/clientesNaturales/ClientesNaturalesView";
 import ProveedoresView from "@/views/proveedores/ProveedoresView";
 import CategoriasView from "@/views/categorias/CategoriasView";
+import OrdenesView from "@/views/ordenes/OrdenesView";
 import MarcasView from "@/views/marcas/MarcasView";
 import ProductosView from "@/views/productos/ProductosView";
 import ComprasView from "@/views/compras/ComprasView";
@@ -65,6 +66,14 @@ export default function Router() {
             element={
               <ProtectedRoute roles={[1]}>
                 <MarcasView />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ordenes"
+            element={
+              <ProtectedRoute roles={[1]}>
+                <OrdenesView />
               </ProtectedRoute>
             }
           />

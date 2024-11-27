@@ -6,7 +6,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import BotonCrear from "./BotonCrear";
 import columns from "./Columnas";
 
 export default function Tabla({ data }) {
@@ -31,7 +30,6 @@ export default function Tabla({ data }) {
     <TablaUi
       tabla={tabla}
       placeholder={"Buscar orden ..."}
-      BotonCrear={<BotonCrear />}
     />
   );
 }

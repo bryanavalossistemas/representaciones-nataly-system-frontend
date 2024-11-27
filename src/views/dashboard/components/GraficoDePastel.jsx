@@ -52,7 +52,7 @@ export default function GraficoDePastel({ productos }) {
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="mx-auto aspect-square h-[500px]"
         >
           <PieChart>
             <ChartTooltip

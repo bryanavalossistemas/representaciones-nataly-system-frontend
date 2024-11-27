@@ -163,6 +163,22 @@ export default function NavigationMenuDesktop({ className, ...props }) {
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
+          {/* ORDENES */}
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild>
+              <Link to="/ordenes">
+                <Button
+                  className={cn(
+                    pathname.startsWith("/ordenes") &&
+                      "bg-accent text-accent-foreground"
+                  )}
+                  variant="ghost"
+                >
+                  Ordenes
+                </Button>
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
           {/* VENTAS */}
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
